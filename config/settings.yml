@@ -1,0 +1,5 @@
+square:
+  app: 
+    id: sq0idp-Kl2FODMBB-J6oUd3mBZOaw
+    secret: sq0csp-ZincDPNaL0OEqHO8x4zj3k8ngKVlCHvgHUOjbzB1fuc
+    scope: 'MERCHANT_PROFILE_READ PAYMENTS_READ'
