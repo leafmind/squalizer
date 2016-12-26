@@ -1,0 +1,50 @@
+<%= link_to "Back", user_reports_path(@user) %><br>
+ID: <%= @report.id %><br>
+State: <%= @report.state %><br><br>
+Please keep refreshing the page while report is in 'fetch' state.<br>
+Once it is in 'ready' state you can check all the data below<br>
+<br>
+
+<h4>Statistics</h4>
+
+<% @report.statistics.each do |k, v| %>
+  <h3><%= k %> </h3>
+  <table>
+    <thead>
+      <th>month</th>
+      <th>number_of_charges</th>
+      <th>total_incoming_amount</th>
+      <th>year_to_year_change</th>
+    </thead>
+    <tbody>
+  <% v.each do |m, t| %>
+  <tr>
+  	<td><%= m %></td>
+    <td><%= t[:number_of_charges] %></td>
+    <td><%= t[:total_incoming_amount] %></td>
+    <td><%= t[:year_to_year_change] %></td>
+  </tr>
+  <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br>
+
+<h4>Last Year Average Per Month</h4>
+
+<table>
+  <thead>
+    <th>number_of_charges</th>
+    <th>total_incoming_amount</th>
+    <th>volatility</th>
+  </thead>
+  <tbody>
+  <tr>
+    <% t = @report.average %>
+    <td><%= number_with_precision t[:number_of_charges] %></td>
+    <td><%= number_with_precision t[:total_incoming_amount] %></td>
+    <td><%= t[:volatility] %></td>
+  </tr>
+  </tbody>
+</table>
+
