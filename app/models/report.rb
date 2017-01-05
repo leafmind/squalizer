@@ -34,7 +34,7 @@ class Report < ApplicationRecord
       number_of_charges += 1
       total_incoming_amount += t.amount
     end
-    prev_square_created_at ||= user.transactions.ordered.last.square_created_at
+    prev_square_created_at = user.transactions.ordered.last.square_created_at
     if number_of_charges > 0
       monthly_stats[prev_square_created_at.month] = {
         number_of_charges: number_of_charges,
