@@ -48,6 +48,7 @@ group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-its'
   gem 'rspec_api_documentation'
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner'

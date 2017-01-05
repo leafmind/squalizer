@@ -6,9 +6,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://js.squareup.com/v2/paymentform">
-  </script>
+    <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
   <script>
 
   var applicationId = 'sandbox-sq0idp-Kl2FODMBB-J6oUd3mBZOaw'; // <-- Add your application's ID here
@@ -131,10 +132,9 @@
   }
   </script>
 
-  <!--
-    These styles can live in a separate .css file. They're just here to keep this
-    example to a single file.
-  -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+
   <style type="text/css">
     .sq-input {
       border: 1px solid rgb(223, 223, 223);
@@ -153,6 +153,8 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

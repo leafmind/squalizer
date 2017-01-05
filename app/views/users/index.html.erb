@@ -1,50 +1,57 @@
+<div class="row">
   <h3>Generate card nonce</h3>
-  <div>
-  Card Number 4532759734545858<br>
-  CVV 111<br>
-  Expiration Date (Any MM/YY combination in the future)<br>
-  Postal Code 94103<br>
-  </div><br>
-  To charge the sandbox user please fill in the form below with this test data.<br>
-  Please specify the exact amount on your own.<br><br>
-
-
-  <!--
-    These div elements are the placeholder elements that are replaced by the
-    SqPaymentForm's iframes.
-  -->
-  <label>Card Number</label>
-  <div id="sq-card-number"></div>
-  <label>CVV</label>
-  <div id="sq-cvv"></div>
-  <label>Expiration Date</label>
-  <div id="sq-expiration-date"></div>
-  <label>Postal Code</label>
-  <div id="sq-postal-code"></div>
-
-
-  <!--
-    After the SqPaymentForm generates a card nonce, *this* form POSTs the generated
-    card nonce to your application's server.
-
-    You should replace the action attribute of the form with the path of
-    the URL you want to POST the nonce to (for example, "/process-card")
-  -->
-  <%= form_tag(charge_user_path(@sandbox_users.first), method: :post, id: "nonce-form") do %>
-    Amount: <input type="text" id="card-amount" name="amount">
-    <!--
-      Whenever a nonce is generated, it's assigned as the value of this hidden
-      input field.
-    -->
-    <input type="hidden" id="card-nonce" name="nonce">
+  <hr>
+  <div class="col-md-6">
+    <div>
+    Card Number 4532759734545858<br>
+    CVV 111<br>
+    Expiration Date (Any MM/YY combination in the future)<br>
+    Postal Code 94103<br>
+    </div><br>
+    To charge the sandbox user please fill in the form below with this test data.<br>
+    Please specify the exact amount on your own.<br><br>
+  </div>
+  <div class="col-md-6">
 
     <!--
-      Clicking this Submit button kicks off the process to generate a card nonce
-      from the buyer's card information.
+      These div elements are the placeholder elements that are replaced by the
+      SqPaymentForm's iframes.
     -->
-    <input type="submit" onclick="requestCardNonce(event)">
-  <% end %>
-  <br /><br />
+    <label>Card Number</label>
+    <div id="sq-card-number"></div>
+    <label>CVV</label>
+    <div id="sq-cvv"></div>
+    <label>Expiration Date</label>
+    <div id="sq-expiration-date"></div>
+    <label>Postal Code</label>
+    <div id="sq-postal-code"></div>
+  
+  
+    <!--
+      After the SqPaymentForm generates a card nonce, *this* form POSTs the generated
+      card nonce to your application's server.
+  
+      You should replace the action attribute of the form with the path of
+      the URL you want to POST the nonce to (for example, "/process-card")
+    -->
+    <%= form_tag(charge_user_path(@sandbox_users.first), method: :post, id: "nonce-form") do |f| %>
+      Amount: <input type="text" id="card-amount" name="amount">
+      <!--
+        Whenever a nonce is generated, it's assigned as the value of this hidden
+        input field.
+      -->
+      <input type="hidden" id="card-nonce" name="nonce">
+  
+      <!--
+        Clicking this Submit button kicks off the process to generate a card nonce
+        from the buyer's card information.
+      -->
+      <%= submit_tag "Make Payment", class: "btn btn-primary", :onclick => "requestCardNonce(event)" %>
+    <% end %>
+    <br /><br />
+  </div>
+</div>
+<div class="row">
   <h3>Sandbox Users</h3>
   <% for u in @sandbox_users %>
     <%= link_to u.email, user_path(u)%> <br />
@@ -55,3 +62,4 @@
   <% end %>
   <br><br>
   <%= link_to "Connect New User", root_path %>
+</div>

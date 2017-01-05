@@ -1,11 +1,14 @@
-<%= link_to "Back", user_path(@user) %><br><br>
-<%= form_for(:report, url: user_reports_path(@user), method: :post) do |f| %>
-  <%= f.hidden_field :state, value: :fetch, class: 'form-control' %>
-  <%= f.submit "Create Report", class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <%= link_to "Back", user_path(@user) %><br><br>
+  <hr>
+  <%= form_for(:report, url: user_reports_path(@user), method: :post) do |f| %>
+    <%= f.hidden_field :state, value: :fetch, class: 'form-control' %>
+    <%= f.submit "Create Report", class: "btn btn-primary" %>
+  <% end %>
+  
+  <h3>All Reports</h3>
+  <% for r in @reports.reverse %>
+    <%= link_to "#{r.id}-#{r.state}", user_report_path(@user, r)%> <br />
+  <% end %>
 
-<h3>All Reports</h3>
-<% for r in @reports %>
-  <%= link_to "#{r.id}-#{r.state}", user_report_path(@user, r)%> <br />
-<% end %>
-
+</div>

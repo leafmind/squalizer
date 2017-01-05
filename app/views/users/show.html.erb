@@ -1,42 +1,52 @@
-<%= link_to "Back", users_path %><br>
-ID: <%= @user.id %><br />
-State: <%= @user.state %><br />
-Please keep refreshing the page while user is in 'fetch' state.<br>
-Once he is in 'ready' state you can check all the data below<br>
-
-<%= form_for(@user) do |f| %>
-  <%= f.hidden_field :state, value: :fetch, class: 'form-control' %>
-  <%= f.submit "Fetch Data", class: "btn btn-primary" %>
-<% end %>
-
-<br><br>
-
-<%= link_to "View Reports", user_reports_path(@user) %><br>
-
-<% @locations.each do |l| %>
-  <h3><%= l.name %> </h3>
-  <table>
-    <thead>
-      <th>ID</th>
-      <th>Location</th>
-      <th>User</th>
-      <th>square_created_at</th>
-      <th>square_id</th>
-      <th>currency</th>
-      <th>amount</th>
-    </thead>
-    <tbody>
-  <% l.transactions.each do |t| %>
-  <tr>
-    <td><%= t.id %></td>
-    <td><%= t.location_id %></td>
-    <td><%= t.user_id %></td>
-    <td><%= t.square_created_at %></td>
-    <td><%= t.square_id %></td>
-    <td><%= t.currency %></td>
-    <td><%= t.amount %></td>
-  </tr>
+<div class="row">
+  <%= link_to "Back", users_path %>
+  <hr>
+  <div class="col-md-6">
+    ID: <%= @user.id %><br />
+    State: <%= @user.state %><br />
+    Please keep refreshing the page while user is in 'fetch' state.<br>
+    Once he is in 'ready' state you can check all the data below<br>
+    <br>
+  </div>
+  <div class="col-md-6">
+    <br><br>
+  <%= form_for(@user) do |f| %>
+    <%= f.hidden_field :state, value: :fetch, class: 'form-control' %>
+    <%= f.submit "Fetch Data", class: "btn btn-primary" %>
   <% end %>
-    </tbody>
-  </table>
-<% end %>
+  </div>
+  <br><br>
+</div>
+
+
+<div class="row">
+  <%= link_to "View Reports", user_reports_path(@user), class: 'btn btn-default' %><br>
+
+  <% @locations.each do |l| %>
+    <h3><%= l.name %> </h3>
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>Location</th>
+        <th>User</th>
+        <th>square_created_at</th>
+        <th>square_id</th>
+        <th>currency</th>
+        <th>amount</th>
+      </thead>
+      <tbody>
+    <% l.transactions.each do |t| %>
+    <tr>
+      <td><%= t.id %></td>
+      <td><%= t.location_id %></td>
+      <td><%= t.user_id %></td>
+      <td><%= t.square_created_at %></td>
+      <td><%= t.square_id %></td>
+      <td><%= t.currency %></td>
+      <td><%= t.amount %></td>
+    </tr>
+    <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

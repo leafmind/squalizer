@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :transactions
   has_many :reports
 
-  after_save { FetchDataJob.perform_later(self) if self.state.to_sym == :fetch }
+  after_save { FetchDataJob.perform_later(self) if self.state.to_s == 'fetch' }
 
   scope :sandbox, -> {where(sandbox: true)}
 
