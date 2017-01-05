@@ -23,13 +23,13 @@ class Report < ApplicationRecord
           yearly_monthly_stats[prev_square_created_at.year] = monthly_stats
           monthly_stats = {}
         end
+        prev_square_created_at = t.square_created_at
         monthly_stats[prev_square_created_at.month] = {
           number_of_charges: number_of_charges,
           total_incoming_amount: total_incoming_amount
-        } if prev_square_created_at
+        }
         number_of_charges = 0
         total_incoming_amount = 0
-        prev_square_created_at = t.square_created_at
       end
       number_of_charges += 1
       total_incoming_amount += t.amount
